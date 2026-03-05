@@ -1,0 +1,40 @@
+services:
+  # ── Ollama LLM Server ──────────────────────────────────────
+  ollama:
+    image: ollama/ollama:latest
+    container_name: localpilot-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    restart: unless-stopped
+
+  # ── FastAPI Backend + Static Frontend ──────────────────────
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: localpilot-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - workspace_data:/app/workspace
+      - ./frontend:/app/frontend:ro
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+      - OLLAMA_MODEL=qwen2.5-coder:7b
+      - WORKSPACE_DIR=/app/workspace
+    depends_on:
+      - ollama
+    restart: unless-stopped
+
+volumes:
+  ollama_data:
+  workspace_data:

@@ -1,0 +1,11 @@
+# docker-compose.override.yml
+#
+# This override removes the NVIDIA GPU reservation so the stack
+# can run on machines without a GPU (CPU-only Ollama).
+# Usage:  docker compose -f docker-compose.yml -f docker-compose.override.yml up
+#
+# If you HAVE an NVIDIA GPU, just run:  docker compose up
+
+services:
+  ollama:
+    deploy: {}

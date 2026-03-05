@@ -1,0 +1,253 @@
+/* ═══════════════════════════════════════════════════════════════
+   LocalPilot IDE – Custom styles
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Reset & base */
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: #1e1e1e;
+  color: #cccccc;
+}
+
+/* ── Toolbar ──────────────────────────────────────────────── */
+#toolbar {
+  height: 38px;
+  min-height: 38px;
+  z-index: 10;
+}
+
+/* ── Main three-panel layout ─────────────────────────────── */
+#main-container {
+  display: flex;
+  height: calc(100vh - 38px);
+  overflow: hidden;
+}
+
+/* ── Sidebar (file explorer) ─────────────────────────────── */
+#sidebar {
+  width: 240px;
+  min-width: 160px;
+  max-width: 450px;
+  background: #252526;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.sidebar-header {
+  background: #2d2d2d;
+  border-bottom: 1px solid #3c3c3c;
+  min-height: 30px;
+}
+
+#file-tree {
+  flex: 1;
+  padding: 4px 0;
+  font-size: 13px;
+  user-select: none;
+}
+
+/* Tree item */
+.tree-item {
+  display: flex;
+  align-items: center;
+  padding: 2px 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  border-radius: 3px;
+  gap: 4px;
+}
+.tree-item:hover { background: #2a2d2e; }
+.tree-item.active { background: #094771; }
+.tree-item i { width: 16px; text-align: center; flex-shrink: 0; }
+.tree-item span { overflow: hidden; text-overflow: ellipsis; }
+
+/* Indent levels */
+.tree-children { padding-left: 12px; }
+
+/* ── Resize handles ──────────────────────────────────────── */
+.resize-handle {
+  width: 4px;
+  cursor: col-resize;
+  background: #3c3c3c;
+  flex-shrink: 0;
+}
+.resize-handle:hover { background: #007acc; }
+
+/* ── Editor panel ────────────────────────────────────────── */
+#editor-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  overflow: hidden;
+}
+
+/* Tabs */
+#editor-tabs {
+  background: #252526;
+  min-height: 34px;
+  gap: 0;
+}
+.editor-tab {
+  display: flex;
+  align-items: center;
+  padding: 4px 12px;
+  font-size: 13px;
+  background: #2d2d2d;
+  color: #888;
+  border-right: 1px solid #1e1e1e;
+  cursor: pointer;
+  white-space: nowrap;
+  gap: 6px;
+  max-width: 180px;
+}
+.editor-tab:hover { color: #ccc; }
+.editor-tab.active {
+  background: #1e1e1e;
+  color: #fff;
+  border-top: 2px solid #007acc;
+}
+.editor-tab .tab-close {
+  font-size: 14px;
+  opacity: 0.4;
+  cursor: pointer;
+  line-height: 1;
+}
+.editor-tab .tab-close:hover { opacity: 1; }
+.editor-tab.modified .tab-name::after {
+  content: " ●";
+  color: #c4c4c4;
+}
+
+/* Monaco container */
+#editor-container {
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Status bar */
+#status-bar {
+  height: 22px;
+  min-height: 22px;
+  background: #007acc;
+  color: #fff;
+  line-height: 22px;
+  font-size: 12px;
+}
+
+/* ── Chat panel ──────────────────────────────────────────── */
+#chat-panel {
+  width: 340px;
+  min-width: 240px;
+  max-width: 600px;
+  background: #252526;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+#chat-panel.hidden { display: none; }
+
+#chat-messages {
+  flex: 1;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* Chat bubbles */
+.chat-msg {
+  margin-bottom: 10px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+.chat-msg.user {
+  background: #0e4880;
+  align-self: flex-end;
+  border-radius: 6px 6px 0 6px;
+}
+.chat-msg.assistant {
+  background: #2d2d2d;
+  border: 1px solid #3c3c3c;
+}
+.chat-msg pre {
+  background: #1e1e1e;
+  padding: 8px;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-size: 12px;
+  margin: 6px 0;
+}
+.chat-msg code {
+  font-family: "Cascadia Code", "Fira Code", Consolas, monospace;
+  font-size: 12px;
+}
+
+/* Chat input */
+#chat-input {
+  resize: none;
+  font-size: 13px;
+}
+
+/* ── File-action badges (shown instead of code blocks) ──── */
+.file-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px;
+}
+.file-action-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  background: #1a3a2a;
+  border: 1px solid #2d6b45;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #3fb950;
+}
+.file-action-badge:hover {
+  background: #224a34;
+}
+.file-action-badge i {
+  font-size: 14px;
+}
+
+/* ── Ghost text (inline suggestion) ──────────────────────── */
+.ghost-text-decoration {
+  color: #585858 !important;
+  font-style: italic;
+}
+
+/* ── Context menu ─────────────────────────────────────────── */
+.ctx-menu {
+  position: fixed;
+  background: #2d2d2d;
+  border: 1px solid #454545;
+  border-radius: 4px;
+  padding: 4px 0;
+  font-size: 13px;
+  z-index: 999;
+  min-width: 160px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.4);
+}
+.ctx-menu-item {
+  padding: 4px 16px;
+  cursor: pointer;
+}
+.ctx-menu-item:hover {
+  background: #094771;
+}
+
+/* ── Scrollbar tweaks ─────────────────────────────────────── */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #424242; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #555; }
