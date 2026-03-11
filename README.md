@@ -27,6 +27,8 @@ This project is experimental. Initial success found - it works! Maybe larger mod
 
 ## Demo
 
+[![LocalPilot IDE Demo](https://img.youtube.com/vi/uOHrSOFp96I/maxresdefault.jpg)](https://youtu.be/uOHrSOFp96I)
+
 Check out this demo video: [LocalPilot IDE Demo](https://youtu.be/uOHrSOFp96I)
 
 ## Quick Start
