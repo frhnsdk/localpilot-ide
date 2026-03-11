@@ -25,6 +25,10 @@ A **fully local** AI coding IDE that runs in your browser — powered by
 
 This project is experimental. Initial success found - it works! Maybe larger models like 70b models will run perfectly.
 
+## Demo
+
+Check out this demo video: [LocalPilot IDE Demo](https://youtu.be/uOHrSOFp96I)
+
 ## Quick Start
 
 ### With an NVIDIA GPU
